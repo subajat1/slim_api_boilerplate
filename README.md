@@ -17,4 +17,9 @@ docker run -d -p 3000:3000 node-boilerplate:slim
 ### Node Test
 `http://127.0.0.1:3000`
 
-## Python
+## Python - Flask
+docker build . -t py-boilerplate:slim
+docker run -d -p 9000:9000 py-boilerplate:slim
+
+### Python Test
+`http://127.0.0.1:9000`
