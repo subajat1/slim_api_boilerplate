@@ -1,0 +1,40 @@
+version: 1
+disable_existing_loggers: true
+formatters:
+  default:
+    format: '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+  access:
+    format: '%(message)s'
+handlers:
+  console:
+    level: 'ERROR'
+    class: 'logging.StreamHandler'
+    formatter: 'default'
+    stream: 'ext://sys.stdout'
+  error_file:
+    level: 'DEBUG'
+    class: 'logging.handlers.RotatingFileHandler'
+    formatter: 'default'
+    filename: '/var/log/gunicorn.error.log'
+    maxBytes: 10000
+    backupCount: 10
+    delay: true
+  access_file:
+    class: 'logging.handlers.RotatingFileHandler'
+    formatter: 'access'
+    filename: '/var/log/gunicorn.access.log'
+    maxBytes: 10000
+    backupCount: 10
+    delay: True
+loggers:
+  gunicorn.error:
+    handlers: ['error_file']
+    level: 'DEBUG'
+    propagate: false
+  gunicorn.access:
+    handlers: ['access_file']
+    level: 'INFO'
+    propagate: false
+root:
+  level: 'INFO'
+  handlers: ['error_file', 'console']

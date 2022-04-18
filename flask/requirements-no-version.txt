@@ -1,0 +1,6 @@
+flask
+flask_sqlalchemy
+flake8
+python-dotenv
+gunicorn
+pyyaml

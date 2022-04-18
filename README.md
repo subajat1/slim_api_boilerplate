@@ -23,3 +23,6 @@ docker run -d -p 9000:9000 py-boilerplate:slim
 
 ### Python Test
 `http://127.0.0.1:9000`
+
+### Flask Run
+sudo gunicorn --chdir app app:app -w 2 --threads 2 -b 0.0.0.0:8000
